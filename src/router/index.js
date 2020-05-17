@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Layout from '../components/common/Layout.vue'
 
 Vue.use(Router)
 
@@ -7,82 +8,58 @@ export const routes = [
   {
     path: '*',
     redirect: '/404',
-    meta: { 
-      title: '404',
-      hidden: false
-     },
+    meta: { title: '404', },
   },
   {
-    path: '/',
+    path: '',
     redirect: '/home',
-    meta: { 
-      title: '首页',
-      hidden: false
-     },
+    meta: { title: '重定向', },
   },
   {
     path: '/login',
     component: () => import('../pages/Login.vue'),
-    meta: { 
-      title: '登录',
-      hidden: false
-     },
+    meta: { title: '登录', },
   },
   {
     path: '/',
-    component: () => import('../components/common/Layout.vue'),
-    meta: { 
-      title: '自述文件',
-      hidden: false
-     },
+    component: Layout,
+    meta: { title: '布局组件', },
     children: [
       {
         path: '/home',
         component: () => import('../pages/Home.vue'),
-        meta: { 
-          title: '系统首页',
-          hidden: false,
-          icon: 'home'
-         }
+        meta: { title: '系统首页', }
+      },
+      {
+        path: '/form',
+        component: () => import('../pages/Form.vue'),
+        meta: { title: '基本表单', },
+      },
+      {
+        path: '/table',
+        component: () => import('../pages/Table.vue'),
+        meta: { title: '常用表格', },
       },
       {
         path: '/404',
         component: () => import('../pages/404.vue'),
-        meta: { 
-          title: '404',
-          hidden: true,
-          icon: 'lx-home'
-         }
+        meta: { title: '404', }
       },
       {
-        path: '/form',
-        component: () => import(''),
-        meta: { 
-          title: '表单组件',
-          hidden: false,
-          icon: 'lx-calendar'
-         },
-         children: [
-           {
-             path: '/table',
-             component: () => import('../pages/Form.vue'),
-             meta: { 
-              title: '基本表单',
-              hidden: false,
-              icon: 's-data'
-             },
-           },
-           {
-             path: '/table',
-             component: () => import('../pages/Table.vue'),
-             meta: { 
-              title: '常用表格',
-              hidden: false,
-              icon: 's-marketing'
-             },
-           },
-         ]
-      }
+        path: '/tabs',
+        component: () => import('../pages/Tabs.vue'),
+        meta: { title: 'tab选项卡', }
+      },
+      {
+        path: '/editor',
+        component: () => import('../pages/Editor.vue'),
+        meta: { title: '富文本编辑器', }
+      },
+      {
+        path: '/markdown',
+        component: () => import('../pages/Markdown.vue'),
+        meta: { title: 'markdown编辑器', }
+      },
     ]
   }
 ]

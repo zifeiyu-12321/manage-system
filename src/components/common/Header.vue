@@ -47,6 +47,7 @@
 
 <script>
 import headProtrait from '@/assets/image/headPortrait.png'
+import bus from '../bus'
 export default {
   name: "",
   components: {},
@@ -62,6 +63,7 @@ export default {
     // 折叠按钮
     colladseChange() {
       this.collapse = !this.collapse
+      bus.$emit('collapse',this.collapse)
     },
     // 全屏事件
     handleFullScreen() {
