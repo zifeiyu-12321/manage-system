@@ -386,23 +386,21 @@ body {
   padding-bottom: 30px;
 }
 
-
-@font-face {
-  font-family: 'iconfont';
-  /* project id 1316362 */
-  src: url('//at.alicdn.com/t/font_1316362_xbaec9ek18.eot');
-  src: url('//at.alicdn.com/t/font_1316362_xbaec9ek18.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_1316362_xbaec9ek18.woff2') format('woff2'),
-    url('//at.alicdn.com/t/font_1316362_xbaec9ek18.woff') format('woff'),
-    url('//at.alicdn.com/t/font_1316362_xbaec9ek18.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_1316362_xbaec9ek18.svg#iconfont') format('svg');
+.main-containt {
+  width: auto;
+  height: 100%;
+  padding: 10px;
+  overflow-y: scroll;
+  box-sizing: border-box;
 }
 
-.iconfont {
-  font-family: "iconfont" !important;
-  font-size: 16px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-stroke-width: 0.2px;
-  -moz-osx-font-smoothing: grayscale;
+.page-title {
+  margin: 10px 0;
+}
+
+.page-container {
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }

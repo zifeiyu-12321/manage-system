@@ -98,7 +98,7 @@ export default {
                 {
                   icon: "tickets",
                   index: "markdown",
-                  title: "markdown编辑器"
+                  title: "markdown"
                 }
               ]
             }
@@ -113,15 +113,15 @@ export default {
     };
   },
   created() {
-    console.log(this.$route.path);
     bus.$on('collapse', (msg) => {
       this.collapse = msg
       bus.$emit('collapse-content',msg)
     })
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+    // 展开指定的 sub-menu
+    handleOpen() {
+      // console.log(key, keyPath);
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);

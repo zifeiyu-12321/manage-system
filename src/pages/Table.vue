@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: '',
+  name: 'v-table',
   components: {},
   data() {
     return {

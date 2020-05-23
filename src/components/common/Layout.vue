@@ -3,6 +3,7 @@
     <v-header></v-header>
     <v-aside></v-aside>
     <div class="content-box" :class="{'content-collapse': collapse}">
+      <v-tags></v-tags>
       <div class="main-containt">
         <router-view></router-view>
       </div>
@@ -13,10 +14,11 @@
 <script>
 import vHeader from "./Header";
 import vAside from "./Aside";
+import vTags from "./Tag"
 import bus from "../bus";
 export default {
   name: "",
-  components: { vHeader, vAside },
+  components: { vHeader, vAside, vTags },
   data() {
     return {
       collapse: false
@@ -41,13 +43,6 @@ export default {
   -webkit-transition: left 0.3s ease-in-out;
   transition: left 0.3s ease-in-out;
   background: #f0f0f0;
-  .main-containt {
-    width: auto;
-    height: 100%;
-    padding: 10px;
-    overflow-y: scroll;
-    box-sizing: border-box;
-  }
 }
 
 .content-collapse {

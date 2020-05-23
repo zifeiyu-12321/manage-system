@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: '',
+  name: 'v-form',
   components: {},
   data() {
     return {
