@@ -63,7 +63,7 @@ export default {
   components: {},
   data() {
     return {
-      collapse: false,
+      collapse: true,
       asideVaveData: [
         {
           icon: "setting",

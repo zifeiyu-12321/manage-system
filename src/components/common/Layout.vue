@@ -21,7 +21,7 @@ export default {
   components: { vHeader, vAside, vTags },
   data() {
     return {
-      collapse: false
+      collapse: true
     };
   },
   created() {

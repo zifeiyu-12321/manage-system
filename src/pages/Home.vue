@@ -10,8 +10,8 @@
               <div>{{role}}</div>
             </div>
           </div>
-          <div class="user-info-list"> 上次登录时间： <span>2020-05-23</span> </div>
-          <div class="user-info-list"> 上次登录地点： <span>深圳</span> </div>
+          <div class="user-info-list"> 当前时间： <span>{{currentTime}}</span></div>
+          <div class="user-info-list"> 当前地点： <span>深圳</span> </div>
         </el-card>
         <el-card shadow="hover" style="height:252px;">
           <div slot="header" class="clearfix"> <span>语言详情</span> </div>
@@ -22,36 +22,14 @@
         </el-card>
       </el-col>
       <el-col :span="16">
-        <el-row :gutter="20" class="mgb20">
-          <el-col :span="8">
+        <el-row :gutter="20" class="mb-20">
+          <el-col :span="8" v-for="(item, index) in statistics" :key="index">
             <el-card shadow="hover" :body-style="{padding: '0px'}">
-              <div class="grid-content grid-con-1">
+              <div :class="`grid-content grid-con-${index + 1}`">
                 <i class="el-icon-lx-people grid-con-icon"></i>
                 <div class="grid-cont-right">
-                  <div class="grid-num mb-10">1234</div>
-                  <div>用户访问量</div>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="8">
-            <el-card shadow="hover" :body-style="{padding: '0px'}">
-              <div class="grid-content grid-con-2">
-                <i class="el-icon-lx-notice grid-con-icon"></i>
-                <div class="grid-cont-right">
-                  <div class="grid-num mb-10">321</div>
-                  <div>系统消息</div>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :span="8">
-            <el-card shadow="hover" :body-style="{padding: '0px'}">
-              <div class="grid-content grid-con-3">
-                <i class="el-icon-lx-goods grid-con-icon"></i>
-                <div class="grid-cont-right">
-                  <div class="grid-num mb-10">5000</div>
-                  <div>数量</div>
+                  <div class="grid-num mb-10">{{item.num}}</div>
+                  <div>{{item.title}}</div>
                 </div>
               </div>
             </el-card>
@@ -84,14 +62,9 @@
       </el-col>
     </el-row>
     <el-row :gutter="20">
-      <el-col :span="12">
+      <el-col :span="12" v-for="(item, index) in [options, options2]" :key="index">
         <el-card shadow="hover">
-          <schart ref="bar" class="schart" canvasId="bar" :options="options"></schart>
-        </el-card>
-      </el-col>
-      <el-col :span="12">
-        <el-card shadow="hover">
-          <schart ref="line" class="schart" canvasId="line" :options="options2"></schart>
+          <schart :ref="item.type" class="schart" :canvasId="item.type" :options="item"></schart>
         </el-card>
       </el-col>
     </el-row>
@@ -106,6 +79,20 @@ export default {
   data() {
     return {
       name: localStorage.getItem("ms_username"),
+      statistics:[
+        {
+          num: 5314,
+          title: '用户访问量'
+        },
+        {
+          num: 2364,
+          title: '系统消息'
+        },
+        {
+          num: 7639,
+          title: '数量'
+        },
+      ],
       todoList: [
         {
           title: "今天要修复100个bug",
@@ -200,51 +187,38 @@ export default {
             data: [74, 118, 200, 235, 90]
           }
         ]
-      }
+      },
+      timer: '',
+      currentTime: ''
     };
   },
   components: {
     Schart
+  },
+  mounted() {
+    this.timer = setInterval(this.getCurrentTimes, 1000)
   },
   computed: {
     role() {
       return this.name === "admin" ? "超级管理员" : "普通用户";
     }
   },
-  // created() {
-  //     this.handleListener();
-  //     this.changeDate();
-  // },
-  // activated() {
-  //     this.handleListener();
-  // },
-  // deactivated() {
-  //     window.removeEventListener('resize', this.renderChart);
-  //     bus.$off('collapse', this.handleBus);
-  // },
   methods: {
-    changeDate() {
-      const now = new Date().getTime();
-      this.data.forEach((item, index) => {
-        const date = new Date(now - (6 - index) * 86400000);
-        item.name = `${date.getFullYear()}/${date.getMonth() +
-          1}/${date.getDate()}`;
-      });
+    getCurrentTimes() {
+      let date = new Date()
+      let year = date.getFullYear()
+      let month = date.getMonth() + 1 < 10 ? ('0' + (date.getMonth() + 1)) : (date.getMonth() + 1)
+      let dates = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+      let hour = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
+      let minute = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+      let second = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
+      this.currentTime = year + '-' + month + '-' + dates + ' ' + hour + ':' + minute + ':' + second
     }
-    // handleListener() {
-    //     bus.$on('collapse', this.handleBus);
-    //     // 调用renderChart方法对图表进行重新渲染
-    //     window.addEventListener('resize', this.renderChart);
-    // },
-    // handleBus(msg) {
-    //     setTimeout(() => {
-    //         this.renderChart();
-    //     }, 200);
-    // },
-    // renderChart() {
-    //     this.$refs.bar.renderChart();
-    //     this.$refs.line.renderChart();
-    // }
+  },
+  beforeDestroy() {
+    if (this.timer) {
+      clearInterval(this.timer); // 在Vue实例销毁前，清除我们的定时器
+    }
   }
 };
 </script>
@@ -339,7 +313,7 @@ export default {
 }
 
 .user-info-list span {
-  margin-left: 70px;
+  margin-left: 20px;
 }
 
 .mgb20 {

@@ -54,7 +54,7 @@ export default {
   data() {
     return {
       headProtrait,
-      collapse: false,
+      collapse: true,
       fullscreen: false,
       message: 2
     };
