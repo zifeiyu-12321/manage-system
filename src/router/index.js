@@ -60,6 +60,11 @@ export const routes = [
         component: () => import('../pages/Markdown.vue'),
         meta: { title: 'markdown编辑器', }
       },
+      {
+        path: '/map',
+        component: () => import('../pages/MapUse.vue'),
+        meta: { title: '高德地图', }
+      },
     ]
   }
 ]

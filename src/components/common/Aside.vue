@@ -108,6 +108,11 @@ export default {
           icon: "connection",
           index: "tabs",
           title: "tab选项卡"
+        },
+        {
+          icon: "s-promotion",
+          index: "map",
+          title: "高德地图"
         }
       ]
     };
