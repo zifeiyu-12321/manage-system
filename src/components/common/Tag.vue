@@ -1,8 +1,13 @@
 <template>
   <div class="system-tags">
     <ul class="tags-container">
-      <li class="tag-item" v-for="(item, index) in tagList" :key="index" :class="{'active': isActive(item.path)}">
-        {{item.title}}
+      <li
+        class="tag-item"
+        v-for="(item, index) in tagList"
+        :key="index"
+        :class="{'active': isActive(item.path)}"
+      >
+        <router-link :to="item.path">{{item.title}}</router-link>
         <span @click="closeTag(index)">
           <i class="el-icon-close"></i>
         </span>
@@ -24,7 +29,7 @@
 </template>
 
 <script>
-import bus from '../bus'
+import bus from "../bus";
 export default {
   name: "v-tags",
   components: {},
@@ -85,7 +90,7 @@ export default {
           name: route.matched[1].components.default.name
         });
       }
-      bus.$emit('tags', this.tagList)
+      bus.$emit("tags", this.tagList);
     },
     // 关闭所有标签
     closeAll() {
@@ -128,16 +133,22 @@ export default {
       line-height: 24px;
       margin-right: 10px;
       border: 1px solid #e9eaec;
-      color: #666;
       font-size: 12px;
       padding: 0 5px;
       cursor: pointer;
       border-radius: 4px;
+      > a {
+        text-decoration: none;
+        color: #666;
+      }
     }
     .active {
       color: #ffffff;
-      background-color: #409EFF;
-      border-color: #409EFF;
+      background-color: #409eff;
+      border-color: #409eff;
+      >a {
+        color: #fff;
+      }
     }
   }
 }

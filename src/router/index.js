@@ -65,6 +65,16 @@ export const routes = [
         component: () => import('../pages/MapUse.vue'),
         meta: { title: '高德地图', }
       },
+      {
+        path: '/dragTable',
+        component: () => import('../pages/DragTable.vue'),
+        meta: { title: '拖拽列表', }
+      },
+      {
+        path: '/dragFrame',
+        component: () => import('../pages/DragFrame.vue'),
+        meta: { title: '拖拽弹框', }
+      },
     ]
   }
 ]

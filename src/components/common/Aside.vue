@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import bus from '../bus'
+import bus from "../bus";
 export default {
   name: "",
   components: {},
@@ -113,15 +113,32 @@ export default {
           icon: "s-promotion",
           index: "map",
           title: "高德地图"
+        },
+        {
+          icon: "rank",
+          index: "drag",
+          title: "拖拽组件",
+          children: [
+            {
+              icon: "sort",
+              index: "dragTable",
+              title: "拖拽列表"
+            },
+            {
+              icon: "sort",
+              index: "dragFrame",
+              title: "拖拽弹框"
+            },
+          ]
         }
       ]
     };
   },
   created() {
-    bus.$on('collapse', (msg) => {
-      this.collapse = msg
-      bus.$emit('collapse-content',msg)
-    })
+    bus.$on("collapse", msg => {
+      this.collapse = msg;
+      bus.$emit("collapse-content", msg);
+    });
   },
   methods: {
     // 展开指定的 sub-menu
@@ -160,6 +177,6 @@ export default {
   border-right: none;
 }
 .sidebar > ul {
-    height: 100%;
+  height: 100%;
 }
 </style>
