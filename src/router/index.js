@@ -61,6 +61,11 @@ export const routes = [
         meta: { title: 'markdown编辑器', }
       },
       {
+        path: '/showMarkdown',
+        component: () => import('../pages/ShowMarkdownFile.vue'),
+        meta: { title: '展示markdown文件', }
+      },
+      {
         path: '/map',
         component: () => import('../pages/MapUse.vue'),
         meta: { title: '高德地图', }
@@ -75,6 +80,11 @@ export const routes = [
         component: () => import('../pages/DragFrame.vue'),
         meta: { title: '拖拽弹框', }
       },
+      {
+        path: '/qrcode',
+        component: () => import('../pages/Qrcode.vue'),
+        meta: { title: 'Qrcode的使用' }
+      }
     ]
   }
 ]

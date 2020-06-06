@@ -99,6 +99,11 @@ export default {
                   icon: "tickets",
                   index: "markdown",
                   title: "markdown"
+                },
+                {
+                  icon: "tickets",
+                  index: "showMarkdown",
+                  title: "markdown展示"
                 }
               ]
             }
@@ -115,21 +120,26 @@ export default {
           title: "高德地图"
         },
         {
-          icon: "rank",
-          index: "drag",
+          icon: "",
+          index: "4",
           title: "拖拽组件",
           children: [
             {
-              icon: "sort",
+              icon: "rank",
               index: "dragTable",
               title: "拖拽列表"
             },
             {
-              icon: "sort",
+              icon: "rank",
               index: "dragFrame",
               title: "拖拽弹框"
             },
           ]
+        },
+        {
+          icon: "magic-stick",
+          index: "qrcode",
+          title: "Qrcode使用",
         }
       ]
     };
